@@ -31,6 +31,12 @@ public class PauseableThreadPool extends ThreadPoolExecutor {
         super(corePoolSize, maximumPoolSize, keepAliveTime, unit, workQueue, threadFactory, handler);
     }
 
+    /**
+     * 线程执行前的操作
+     *
+     * @param t the thread that will run task {@code r}
+     * @param r the task that will be executed
+     */
     @Override
     protected void beforeExecute(Thread t, Runnable r) {
         super.beforeExecute(t, r);
@@ -45,6 +51,20 @@ public class PauseableThreadPool extends ThreadPoolExecutor {
             lock.unlock();
         }
     }
+
+    /**
+     * 线程执行后的操作
+     *
+     * @param r the runnable that has completed
+     * @param t the exception that caused termination, or null if
+     * execution completed normally
+     */
+    @Override
+    protected void afterExecute(Runnable r, Throwable t) {
+        super.afterExecute(r, t);
+        System.out.println("1111");
+    }
+
 
     /**
      * 标记是否要暂停
