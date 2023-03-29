@@ -5,7 +5,7 @@ import java.util.concurrent.Executors;
 
 /**
  * @Author 康良玉
- * @Description newFixedThreadPool 无界队列
+ * @Description newFixedThreadPool 固定线程池 无界队列
  * @Create 2022-07-12 11:51
  */
 public class FixedThreadPool {
