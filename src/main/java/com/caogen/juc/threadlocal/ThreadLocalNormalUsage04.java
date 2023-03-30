@@ -36,6 +36,10 @@ class Service3 {
     public void process() {
         User user = UserContextHolder.holder.get();
         System.out.println("service3: " + user.name);
+
+        // 由于ThreadlocalMap的key是弱引用，value是强引用，所以用ThreadLocal有可能会出现内存泄露, 所以用完最好remove
+        // 因为key可能被回收了，导致key是null, 但是value是强引用，所以对象一直存在,remove set 等方法会把key是null的value重置为null，这样就可以GC
+        UserContextHolder.holder.remove();
     }
 }
 
